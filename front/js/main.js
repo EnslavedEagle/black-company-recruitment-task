@@ -1,6 +1,6 @@
-const ranking = new Ranking('#numbers-ranking');
-const randoms = new Randoms('#random-numbers');
+const RankingComponent = new Ranking('#numbers-ranking');
+const RandomsComponent = new Randoms('#random-numbers', ranking);
 
 (function InitComponents(...components) {
   components.forEach((component) => component.init());
-})(randoms, ranking);
+})(RandomsComponent, RankingComponent);
