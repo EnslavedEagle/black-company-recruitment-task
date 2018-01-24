@@ -1,7 +1,8 @@
 'use strict';
 
-function Randoms(selector) {
+function Randoms(selector, ranking) {
   Component.call(this, selector);
+  this.ranking = ranking;
   this.randoms = [];
 }
 
@@ -9,8 +10,7 @@ Randoms.prototype = Object.create(Component.prototype);
 Randoms.constructor = Randoms;
 
 Randoms.prototype.init = function init() {
-  this.fetch();
-  setInterval(() => this.fetch(), 10000);
+  setInterval(() => this.fetch(), 10000); // Fetch every ten seconds
 }
 
 Randoms.prototype.fetch = function fetch() {
@@ -20,6 +20,7 @@ Randoms.prototype.fetch = function fetch() {
         return { id: number }
       });
       this.render();
+      this.ranking.addNumbers(this.numbers);
     })
     .catch((error) => {
       console.error(error);
@@ -28,6 +29,7 @@ Randoms.prototype.fetch = function fetch() {
 
 Randoms.prototype.render = function render() {
   const container = this.getDOMElement();
+  container.innerHTML = '';
 
   const list = document.createDocumentFragment();
   this.numbers.forEach((number) => {
