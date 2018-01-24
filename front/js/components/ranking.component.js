@@ -7,19 +7,15 @@ Ranking.prototype = Object.create(Component.prototype);
 Ranking.constructor = Ranking;
 
 Ranking.prototype.init = function() {
-  const self = this;
-
   axios.get('http://localhost:3000/numbers')
-    .then(function(response) {
-      self.numbers = response.data.data.map(function(number) {
-        return {
-          id: number
-        }
+    .then((response) => {
+      this.numbers = response.data.data.map((number) => {
+        return { id: number }
       });
 
-      self.render();
+      this.render();
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.error(error);
     });
 };
@@ -27,11 +23,13 @@ Ranking.prototype.init = function() {
 Ranking.prototype.render = function() {
   const container = this.getDOMElement();
 
+  const list = document.createDocumentFragment();
   this.numbers.forEach(function(number) {
       const listElement = document.createElement('li');
       listElement.classList.add('list-group-item');
       listElement.innerHTML = number.id;
 
-      container.appendChild(listElement);
+      list.appendChild(listElement);
   });
+  container.appendChild(list);
 };
