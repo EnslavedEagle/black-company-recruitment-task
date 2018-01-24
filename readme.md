@@ -16,6 +16,8 @@ Hi! This is our recruitment task for FrontEnd Developer.
 
 I presumed we're using the latest version of Google Chrome with the support of latest ES6/ES7 features, such as rest parameters, arrow functions and other nice stuff. I realize it might not work properly when tested on older browsers.
 
+I left the prototypal inheritance definitions as they were.
+
 ### A list of things done here:
 
 - Added `Randoms` component that appends a list of random numbers fetched from `GET /random-numbers`
